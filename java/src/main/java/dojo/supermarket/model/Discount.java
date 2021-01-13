@@ -19,6 +19,10 @@ public class Discount {
         return discountAmount;
     }
 
+    public double applyOn(double price) {
+        return price - discountAmount;
+    }
+
     public Product getProduct() {
         return product;
     }
