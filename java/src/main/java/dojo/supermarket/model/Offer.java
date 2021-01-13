@@ -7,10 +7,6 @@ public abstract class Offer {
         this.product = product;
     }
 
-    Product getProduct() {
-        return this.product;
-    }
-
     public abstract Discount apply(double quantity, double unitPrice);
 
 }
