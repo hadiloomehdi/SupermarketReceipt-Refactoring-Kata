@@ -27,8 +27,22 @@ public class Teller {
             double price = quantity * unitPrice;
             receipt.addProduct(p, quantity, unitPrice, price);
         }
-        theCart.handleOffers(receipt, this.offers, this.catalog);
 
+        return handleOffers(productQuantities, receipt);
+    }
+
+    private Receipt handleOffers(List<ProductQuantity>productQuantities, Receipt receipt) {
+        for (ProductQuantity productQuantity: productQuantities) {
+            double quantity = productQuantity.getQuantity();
+            Product product = productQuantity.getProduct();
+            if (offers.containsKey(product)) {
+                Offer offer = offers.get(product);
+                double unitPrice = catalog.getUnitPrice(product);
+                Discount discount = offer.apply(quantity, unitPrice);
+                if (discount != null)
+                    receipt.addDiscount(discount);
+            }
+        }
         return receipt;
     }
 
