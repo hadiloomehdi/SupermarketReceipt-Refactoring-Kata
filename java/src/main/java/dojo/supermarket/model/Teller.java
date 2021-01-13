@@ -28,13 +28,13 @@ public class Teller {
             receipt.addProduct(p, quantity, unitPrice, price);
         }
 
-        return handleOffers(productQuantities, receipt);
+        return handleOffers(theCart, receipt);
     }
 
-    private Receipt handleOffers(List<ProductQuantity>productQuantities, Receipt receipt) {
-        for (ProductQuantity productQuantity: productQuantities) {
-            double quantity = productQuantity.getQuantity();
-            Product product = productQuantity.getProduct();
+    private Receipt handleOffers(ShoppingCart cart, Receipt receipt) {
+        Map<Product, Double> productQuantities = cart.getProductQuantities();
+        for (Product product : productQuantities.keySet()) {
+            double quantity = productQuantities.get(product);
             if (offers.containsKey(product)) {
                 Offer offer = offers.get(product);
                 double unitPrice = catalog.getUnitPrice(product);
