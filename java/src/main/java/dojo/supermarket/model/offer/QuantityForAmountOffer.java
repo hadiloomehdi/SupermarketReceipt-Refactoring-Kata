@@ -1,4 +1,7 @@
-package dojo.supermarket.model;
+package dojo.supermarket.model.offer;
+
+import dojo.supermarket.model.Discount;
+import dojo.supermarket.model.Product;
 
 public class QuantityForAmountOffer extends Offer {
 
